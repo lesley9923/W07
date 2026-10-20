@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三魚很棒語言治療所 - 寶貝語言發展小助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        milk: {
+                            50: '#FAF6F0',
+                            100: '#F4ECE1',
+                            200: '#E8D9C5',
+                            300: '#DBC3A7',
+                            400: '#CFA382',
+                            500: '#C2835D',
+                            600: '#A86643',
+                            700: '#8A4D30',
+                            800: '#6D3822',
+                            900: '#522818',
+                        },
+                        tea: {
+                            50: '#FBF9F5',
+                            100: '#F5EFE6',
+                            200: '#E6D7C3',
+                            300: '#D5BEA0',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F4ECE1;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #522818;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(168, 102, 67, 0.12), 0 8px 15px -6px rgba(168, 102, 67, 0.08);
+        }
+        .pulse-gentle {
+            animation: pulseGentle 3s infinite ease-in-out;
+        }
+        @keyframes pulseGentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6">
+
+    <main class="max-w-xl mx-auto w-full pt-4 pb-8">
+        
+        <header class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-milk-400 text-white rounded-full text-3xl mb-3 shadow-md pulse-gentle">
+                <i class="fa-solid fa-fish text-2xl"></i>
+                <i class="fa-solid fa-fish text-xl -ml-1"></i>
+                <i class="fa-solid fa-fish text-xs -ml-1"></i>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-milk-900 tracking-wide mb-1">三魚很棒語言治療所</h1>
+            <p class="text-milk-700 text-sm sm:text-base px-2">
+                嗨！爸爸媽媽辛苦囉～今天寶貝狀況怎麼樣呢？<br class="hidden sm:inline">輸入寶貝的年齡，一起看看這個階段的溝通小妙招吧！
+            </p>
+        </header>
+
+        <div class="bg-milk-50 rounded-3xl p-6 sm:p-8 card-shadow border border-milk-200">
+            
+            <!-- Child Name or Nickname Input -->
+            <div class="mb-5">
+                <label for="child-name" class="block text-sm font-medium text-milk-800 mb-1.5">
+                    <i class="fa-solid fa-face-smile text-milk-500 mr-1"></i> 寶貝的小名（選填）
+                </label>
+                <input type="text" id="child-name" placeholder="例如：小魚包、寶貝" class="w-full bg-white border border-milk-200 rounded-2xl py-2.5 px-4 text-milk-900 focus:outline-none focus:ring-2 focus:ring-milk-400 text-sm">
+            </div>
+
+            <!-- Age Input -->
+            <div class="mb-5">
+                <label class="block text-sm font-medium text-milk-800 mb-1.5">
+                    <i class="fa-solid fa-cake-candles text-milk-500 mr-1"></i> 寶貝目前的生理年齡
+                </label>
+                <div class="flex gap-3">
+                    <div class="relative flex-1">
+                        <input type="number" id="age-years" min="0" max="18" value="3" placeholder="歲" class="w-full bg-white border border-milk-200 rounded-2xl py-3 px-4 text-milk-900 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-milk-400 text-center">
+                        <span class="absolute right-4 top-3.5 text-milk-500 text-sm font-medium">歲</span>
+                    </div>
+                    <div class="relative flex-1">
+                        <input type="number" id="age-months" min="0" max="11" value="6" placeholder="個月" class="w-full bg-white border border-milk-200 rounded-2xl py-3 px-4 text-milk-900 font-bold text-lg focus:outline-none focus:ring-2 focus:ring-milk-400 text-center">
+                        <span class="absolute right-4 top-3.5 text-milk-500 text-sm font-medium">個月</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Focus Area Selector -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-milk-800 mb-2">
+                    <i class="fa-solid fa-heart text-milk-500 mr-1"></i> 您近期最想了解或關注的面向
+                </label>
+                <div class="grid grid-cols-3 gap-2">
+                    <button type="button" id="btn-express" onclick="selectFocus('express')" class="focus-btn text-xs sm:text-sm py-2.5 px-2 rounded-xl border border-milk-400 bg-milk-400 text-white font-medium transition-all shadow-sm">
+                        表達與發音
+                    </button>
+                    <button type="button" id="btn-social" onclick="selectFocus('social')" class="focus-btn text-xs sm:text-sm py-2.5 px-2 rounded-xl border border-milk-200 bg-white text-milk-700 hover:bg-milk-100 transition-all">
+                        社交與眼神
+                    </button>
+                    <button type="button" id="btn-understand" onclick="selectFocus('understand')" class="focus-btn text-xs sm:text-sm py-2.5 px-2 rounded-xl border border-milk-200 bg-white text-milk-700 hover:bg-milk-100 transition-all">
+                        指令理解
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculate / View Tips Button -->
+            <button type="button" onclick="generateAdvice()" class="w-full py-3.5 bg-milk-500 hover:bg-milk-600 text-white font-bold text-base sm:text-lg rounded-2xl shadow-md transform active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>看看老師的小建議與陪伴提醒</span>
+            </button>
+        </div>
+
+        <div id="result-card" class="mt-6 bg-milk-50 rounded-3xl p-6 sm:p-8 card-shadow border border-milk-200 hidden transition-all duration-300">
+            <div class="text-center pb-4 border-b border-milk-200">
+                <p class="text-milk-600 text-sm font-medium mb-1" id="greeting-title">親愛的爸媽：</p>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-milk-200 text-milk-800 text-sm font-bold my-1" id="stage-badge">
+                    <i class="fa-solid fa-seedling mr-1 text-milk-600"></i> <span id="stage-text">語言爆發與互動期</span>
+                </div>
+                <p class="text-xs text-milk-600 mt-2" id="age-summary-text">寶貝目前是 3 歲 6 個月（換算共 42 個月大）</p>
+            </div>
+
+            <!-- Friendly Teacher Tips -->
+            <div class="mt-5 space-y-4">
+                <div class="bg-white rounded-2xl p-4 border border-milk-100 shadow-sm">
+                    <h4 class="font-bold text-milk-800 text-sm sm:text-base flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-comment-dots text-milk-500"></i> 這個階段的語言與互動小特色
+                    </h4>
+                    <p id="stage-desc" class="text-xs sm:text-sm text-milk-700 leading-relaxed">
+                        正在積極累積詞彙，開始試著用簡單句子表達想法。有時候可能因為急著說或聽不懂指令而有點小情緒，這都是非常正常的唷！
+                    </p>
+                </div>
+
+                <div class="bg-milk-100/60 rounded-2xl p-4 border border-milk-200">
+                    <h4 class="font-bold text-milk-800 text-sm sm:text-base flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-hand-holding-heart text-milk-500"></i> 三魚老師給爸媽的居家溫柔小建議
+                    </h4>
+                    <p id="home-tips" class="text-xs sm:text-sm text-milk-800 leading-relaxed">
+                        平常在家可以多玩「接球放球」或「簡單的扮演遊戲」，邊玩邊用放慢的語速重複寶貝有興趣的詞彙。記得多給寶貝回應的時間，等他 3-5 秒，不急著幫他講完喔！
+                    </p>
+                </div>
+            </div>
+
+            <!-- Warm Encouragement Notice -->
+            <div class="mt-5 text-center text-xs text-milk-600 bg-white/60 p-3 rounded-xl border border-milk-100">
+                <p>💡 每個寶貝都是獨一無二的小小種子，成長速度都不一樣。<br>如果想了解更個別化的互動策略，歡迎隨時和三魚的老師們聊聊喔！</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-center text-milk-700 text-xs py-4 space-y-1">
+        <p>🐟 三魚很棒語言治療所 · 用愛與專業陪伴每個獨一無二的孩子 🐟</p>
+        <p class="opacity-70">製作：YAO</p>
+    </footer>
+
+    <script>
+        let currentFocus = 'express'; // 'express', 'social', 'understand'
+
+        function selectFocus(focus) {
+            currentFocus = focus;
+            const focuses = ['express', 'social', 'understand'];
+            
+            focuses.forEach(f => {
+                const btn = document.getElementById(`btn-${f}`);
+                if (f === focus) {
+                    btn.className = 'focus-btn text-xs sm:text-sm py-2.5 px-2 rounded-xl border border-milk-400 bg-milk-400 text-white font-medium transition-all shadow-sm';
+                } else {
+                    btn.className = 'focus-btn text-xs sm:text-sm py-2.5 px-2 rounded-xl border border-milk-200 bg-white text-milk-700 hover:bg-milk-100 transition-all';
+                }
+            });
+        }
+
+        function generateAdvice() {
+            const nameInput = document.getElementById('child-name').value.trim();
+            const years = parseInt(document.getElementById('age-years').value) || 0;
+            const months = parseInt(document.getElementById('age-months').value) || 0;
+            
+            const totalMonths = (years * 12) + months;
+            const childName = nameInput ? nameInput : '寶貝';
+
+            if (totalMonths <= 0) {
+                // Friendly error message block
+                const resultCard = document.getElementById('result-card');
+                resultCard.classList.remove('hidden');
+                document.getElementById('greeting-title').innerText = `親愛的爸媽：`;
+                document.getElementById('stage-text').innerText = '請輸入寶貝的正確年齡';
+                document.getElementById('age-summary-text').innerText = '';
+                document.getElementById('stage-desc').innerText = '請在上方輸入歲數或月份，讓我們能提供最適合的居家陪伴建議喔！';
+                document.getElementById('home-tips').innerText = '如果孩子年齡較小（0-6個月），可以多進行溫柔的眼神接觸與聲音回應。';
+                return;
+            }
+
+            // Determine Age Stage and Custom Friendly Text
+            let stageName = "";
+            let stageDescription = "";
+            let tipsText = "";
+
+            if (totalMonths < 12) {
+                stageName = "聲音探索與感官萌芽期";
+                stageDescription = `${childName}正在透過聲音、眼神與動作認識世界，開始會用發音（如咕咕聲、咿呀聲）來嘗試吸引爸媽注意囉！`;
+                if (currentFocus === 'express') {
+                    tipsText = `多對${childName}說話、唱兒歌，說話時誇大一點口型與表情。當${childName}發出聲音時，記得模仿他的聲音回應他，讓他感受互動的樂趣！`;
+                } else if (currentFocus === 'social') {
+                    tipsText = `多玩「躲貓貓（Peek-a-boo）」遊戲！將臉遮住再露出來，並配合溫和的笑容與驚喜聲音，建立最初步的眼神對視與共同注意。`;
+                } else {
+                    tipsText = `結合日常照顧（如洗澡、換尿布），邊做邊說出動作名稱（「洗洗手」、「穿衣服」），幫${childName}建立語言與情境的連結。`;
+                }
+            } else if (totalMonths < 24) {
+                stageName = "單字發展與肢體溝通期";
+                stageDescription = `${childName}開始會用手指物、點頭搖頭，或是模仿說出詞尾（如「爸爸」、「ㄋㄟㄋㄟ」），理解能力通常比說出來的更快喔！`;
+                if (currentFocus === 'express') {
+                    tipsText = `當${childName}用指的或用聲音哼哼時，幫他把詞彙說出來：「哦！${childName}想要『車車』對不對？」先示範正確詞彙，不強迫他立刻說出口。`;
+                } else if (currentFocus === 'social') {
+                    tipsText = `利用寶貝喜歡的玩具（如積木、吹泡泡），玩「輪流」遊戲（「換媽媽了」、「換${childName}囉」），建立基本的互動輪替觀念。`;
+                } else {
+                    tipsText = `給予簡單清楚的一步驟指令，配適合的肢體動作（例如：「過來」、「給我」），幫助${childName}輕鬆理解與執行。`;
+                }
+            } else if (totalMonths < 36) {
+                stageName = "詞彙爆發與短句組合期";
+                stageDescription = `${childName}開始把兩個詞疊在一起（例如：「媽媽 抱抱」、「吃 餅乾」），也越來越有自己的小想法與主見！`;
+                if (currentFocus === 'express') {
+                    tipsText = `採用「擴展語句」法！當${childName}說：「狗狗 走」，您可以幫他擴展成：「對！大狗狗在走路！」幫助孩子學習更豐富的語法結構。`;
+                } else if (currentFocus === 'social') {
+                    tipsText = `對於比較害羞或有 ASD 特質的寶貝，可以多利用視覺圖片或繪本，跟他一起看圖指認，並用溫和的聲音引導他看著您的眼睛說話。`;
+                } else {
+                    tipsText = `可以試著給予兩步驟的連貫指令（如：「把玩具收起來，然後過來坐好」），並在完成時給予具體鼓勵！`;
+                }
+            } else if (totalMonths < 60) {
+                stageName = "語意擴充與故事表達期";
+                stageDescription = `${childName}能說出完整句子，會問「為什麼？」，並開始嘗試講述學校發生的簡單事情，是學習社交規則的重要階段。`;
+                if (currentFocus === 'express') {
+                    tipsText = `多陪${childName}讀繪本，讀完後可以問一些開放式問題（例如：「你覺得小熊接下來會去哪裡呢？」），鼓勵孩子練習表達想法。`;
+                } else if (currentFocus === 'social') {
+                    tipsText = `加入情境扮演遊戲（如開店賣東西、看醫生），引導${childName}練習不同角色的對話，學習體會別人的情緒與反應。`;
+                } else {
+                    tipsText = `多練習包含時間或空間的概念指令（如：「把書放在桌子上」、「洗完手再吃餅乾」），提升邏輯理解能力。`;
+                }
+            } else {
+                stageName = "學齡前邏輯與複雜溝通期";
+                stageDescription = `${childName}表達能力越來越成熟，能理解複雜的情緒與規矩，正為進入幼兒園或小學的團體生活做準備！`;
+                if (currentFocus === 'express') {
+                    tipsText = `鼓勵${childName}「說故事」，可以請他分享今天最高興的一件事，並引導他說出時間、地點與原因，培養條理清晰的表達力。`;
+                } else if (currentFocus === 'social') {
+                    tipsText = `在團體遊戲中引導孩子學習「分享」、「等待」與「用言語解決衝突」，當孩子情緒激動時，先幫他指明情緒：「我知道你現在有點生氣對不對？」`;
+                } else {
+                    tipsText = `給予多步驟且含有條件的指令，幫助孩子適應課堂規範。如果有發音或不連貫問題，可以請三魚的治療師進行詳細評估喔！`;
+                }
+            }
+
+            // Update UI elements
+            document.getElementById('greeting-title').innerText = `親愛的 ${childName} 爸媽：`;
+            document.getElementById('stage-text').innerText = stageName;
+            document.getElementById('age-summary-text').innerText = `${childName} 目前是 ${years} 歲 ${months} 個月大（共 ${totalMonths} 個月）`;
+            document.getElementById('stage-desc').innerText = stageDescription;
+            document.getElementById('home-tips').innerText = tipsText;
+
+            // Show Result Card with smooth scroll
+            const resultCard = document.getElementById('result-card');
+            resultCard.classList.remove('hidden');
+            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
